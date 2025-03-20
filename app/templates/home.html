@@ -8,19 +8,20 @@
     <!-- Forecast Section -->
     <div class="forecast">
         <h2>Weather Forecast</h2>
-        <p><strong>City:</strong> Krakow</p>
+        <br>
+        <p class="city"><strong>Krakow</strong></p>
         <div class="weather-info">
-            <p><strong>Temperature:</strong> {{ scraped_text["temperature"] }}</p>
-            <p><strong>Condition:</strong> {{ scraped_text["weather"] }}</p>
-            <p><strong>Pressure:</strong> {{ scraped_text["pressure"] }}</p>
-            <p><strong>Wind:</strong> {{ scraped_text["wind"] }}</p>
+            <p class="temperature">{{ scraped_text["temperature"] }}</p>
+            <p class="weather"><i>{{ scraped_text["weather"] }}</i></p>
+            <br>
+            <p class="details"><strong>Pressure:</strong> {{ scraped_text["pressure"] }}</p>
+            <p class="details"><strong>Wind:</strong> {{ scraped_text["wind"] }}</p>
         </div>
-        <h3>Sun & Moon</h3>
         <div class="weather-info">
-            <p><strong>Sunrise:</strong> {{ scraped_text["sun_rise"] }}</p>
-            <p><strong>Sunset:</strong> {{ scraped_text["sun_set"] }}</p>
-            <p><strong>Moonrise:</strong> {{ scraped_text["moon_rise"] }}</p>
-            <p><strong>Moonset:</strong> {{ scraped_text["moon_set"] }}</p>
+            <br><br>
+            <p class="sun-moon">☀️ {{ scraped_text["sun_rise"] }} - {{ scraped_text["sun_set"] }}</p>
+            <br>
+            <p class="sun-moon">🌙 {{ scraped_text["moon_rise"] }} - {{ scraped_text["moon_set"] }}</p>
         </div>
     </div>
 
