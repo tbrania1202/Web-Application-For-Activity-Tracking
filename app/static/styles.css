@@ -1,3 +1,4 @@
+/* General styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,22 +6,26 @@ body {
     text-align: center;
 }
 
+/* Header */
 header {
     background-color: #007bff;
     color: white;
     padding: 1rem;
 }
 
+/* Navigation links */
 nav a {
     margin: 0 10px;
     color: white;
     text-decoration: none;
 }
 
+/* Main content */
 main {
     margin-top: 20px;
 }
 
+/* Footer */
 footer {
     position: fixed;
     left: 0;
@@ -29,4 +34,49 @@ footer {
     margin-top: 20px;
     padding: 10px;
     background-color: #f1f1f1;
+}
+
+/* Container for sections */
+.container {
+    display: flex;
+    width: 100%;
+    height: 75vh;
+    gap: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Forecast section */
+.forecast {
+    width: 25%;
+    background-color: #cce5ff; /* Light blue */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Navigation section */
+.navigation {
+    width: 35%;
+    background-color: #f8f9fa; /* Light gray */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Opinions section */
+.opinions {
+    width: 40%;
+    background-color: #e2e3e5; /* Darker gray */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Headings */
+h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+/* Weather details */
+.weather-info p {
+    margin: 5px 0;
 }

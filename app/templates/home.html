@@ -3,6 +3,38 @@
 {% block title %}Home - Activity Tracker{% endblock %}
 
 {% block content %}
-    <h2>Welcome to Activity Tracker!</h2>
-    <p>Track your daily activities with ease.</p>
+
+<div class="container">
+    <!-- Forecast Section -->
+    <div class="forecast">
+        <h2>Weather Forecast</h2>
+        <p><strong>City:</strong> Krakow</p>
+        <div class="weather-info">
+            <p><strong>Temperature:</strong> {{ scraped_text["temperature"] }}</p>
+            <p><strong>Condition:</strong> {{ scraped_text["weather"] }}</p>
+            <p><strong>Pressure:</strong> {{ scraped_text["pressure"] }}</p>
+            <p><strong>Wind:</strong> {{ scraped_text["wind"] }}</p>
+        </div>
+        <h3>Sun & Moon</h3>
+        <div class="weather-info">
+            <p><strong>Sunrise:</strong> {{ scraped_text["sun_rise"] }}</p>
+            <p><strong>Sunset:</strong> {{ scraped_text["sun_set"] }}</p>
+            <p><strong>Moonrise:</strong> {{ scraped_text["moon_rise"] }}</p>
+            <p><strong>Moonset:</strong> {{ scraped_text["moon_set"] }}</p>
+        </div>
+    </div>
+
+    <!-- Navigation Section -->
+    <div class="navigation">
+        <h2>Navigation</h2>
+        <p>Placeholder for navigation links</p>
+    </div>
+
+    <!-- Opinions Section -->
+    <div class="opinions">
+        <h2>Opinions</h2>
+        <p>Placeholder for user opinions or feedback</p>
+    </div>
+</div>
+
 {% endblock %}
