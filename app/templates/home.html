@@ -31,10 +31,26 @@
         <p>Placeholder for navigation links</p>
     </div>
 
-    <!-- Opinions Section -->
-    <div class="opinions">
-        <h2>Opinions</h2>
-        <p>Placeholder for user opinions or feedback</p>
+    <!-- Messages Section -->
+    <div class="messages">
+        <h2>Messages</h2>
+
+        <div class="messages-container">
+            <div class="message-list">
+                {% for message in messages %}
+                    <div class="message-bubble">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <form action="/" method="POST">
+                <div class="new-message-container">
+                    <textarea type="text" name="message" placeholder="Type your message..." maxlength="150" class="new-message-input" required></textarea>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

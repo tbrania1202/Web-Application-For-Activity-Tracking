@@ -54,11 +54,24 @@ footer {
     border-radius: 10px;
 }
 
+/* City */
 .city {
     font-size: 30px;
     font-weight: bold;
 }
 
+/* Headings */
+h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+/* Weather details */
+.weather-info p {
+    margin: 5px 0;
+}
+
+/* Temperature */
 .temperature {
     font-size: 150px;
     margin: 10px 0;
@@ -80,7 +93,6 @@ footer {
 /* Sun & Moon Info */
 .sun-moon {
     font-size: 20px;
-    /* font-weight: bold; */
     margin-top: 15px;
 }
 
@@ -92,21 +104,86 @@ footer {
     border-radius: 10px;
 }
 
-/* Opinions section */
-.opinions {
+/* Messages section */
+.messages {
     width: 40%;
     background-color: #e2e3e5; /* Darker gray */
     padding: 15px;
     border-radius: 10px;
+    position: relative;
 }
 
-/* Headings */
-h2 {
-    margin-top: 0;
+/* Container Filling Messages Section */
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 96%;
+    
+}
+
+/* New Message Input & Button */
+.new-message-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 0px;
+    padding: 30px;
+}
+
+/* Inpt Of New Message */
+.new-message-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
     text-align: center;
+    background-color: #fff;
+    min-height: 30px;
+    resize: none;
 }
 
-/* Weather details */
-.weather-info p {
-    margin: 5px 0;
+/* Submit Button */
+.submit-button {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    width: 60%;
 }
+
+/* Submit Button Hover */
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Message List Styling */
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 0px;
+}
+
+/* Message Styling*/
+.message-bubble {
+    display: inline-block;
+    max-width: 80%;
+    background-color: #0084ff;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 18px;
+    word-wrap: break-word;
+    text-align: left;
+    font-size: 16px;
+    position: relative;
+    width: fit-content;
+}
+
