@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Activity Tracker{% endblock %}
+
+{% block content %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Activity Name</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Duration (minutes)</th>
+                <th>Metric</th>
+                <th>Intensity</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for activity in activities %}
+                <tr>
+                    <td>{{ activity.name }}</td>
+                    <td>{{ activity.type }}</td>
+                    <td>{{ activity.date }}</td>
+                    <td>{{ activity.duration }}</td>
+                    <td>{{ activity.metric }}</td>
+                    <td>{{ activity.intensity }}</td>
+                    <td>{{ activity.notes }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

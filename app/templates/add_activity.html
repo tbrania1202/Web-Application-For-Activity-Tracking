@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Activity Tracker{% endblock %}
+
+{% block content %}
+
+    <form action="{{ url_for('add_activity.add_activity_page') }}" method="POST">
+        <!-- Activity Name -->
+        <div class="form-group">
+            <label for="activity_name">Activity Name</label>
+            <input type="text" id="activity_name" name="activity_name" required>
+        </div>
+
+        <!-- Activity Type -->
+        <div class="form-group">
+            <label for="activity_type">Activity Type</label>
+            <input type="text" id="activity_type" name="activity_type" required>
+        </div>
+
+        <!-- Activity Date -->
+        <div class="form-group">
+            <label for="activity_date">Activity Date</label>
+            <input type="date" id="activity_date" name="activity_date" required>
+        </div>
+
+        <!-- Activity Duration -->
+        <div class="form-group">
+            <label for="activity_duration">Duration (in minutes)</label>
+            <input type="number" id="activity_duration" name="activity_duration" required>
+        </div>
+
+        <!-- Activity Metric -->
+        <div class="form-group">
+            <label for="activity_metric">Metric (e.g., distance or weight)</label>
+            <input type="number" id="activity_metric" name="activity_metric" required>
+        </div>
+
+        <!-- Activity Intensity -->
+        <div class="form-group">
+            <label for="activity_intensity">Intensity</label>
+            <input type="text" id="activity_intensity" name="activity_intensity" required>
+        </div>
+
+        <!-- Activity Notes -->
+        <div class="form-group">
+            <label for="activity_notes">Notes</label>
+            <textarea id="activity_notes" name="activity_notes" rows="3"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-button">Add Activity</button>
+    </form>
+
+{% endblock %}

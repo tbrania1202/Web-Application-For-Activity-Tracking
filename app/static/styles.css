@@ -104,6 +104,29 @@ h2 {
     border-radius: 10px;
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.action-button {
+    background-color: purple;
+    color: white;
+    font-size: 16px;
+    width: 60%;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: darkviolet;
+}
+
 /* Messages section */
 .messages {
     width: 40%;
@@ -187,3 +210,18 @@ h2 {
     width: fit-content;
 }
 
+table {
+    width: 98%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}

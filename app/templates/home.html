@@ -28,7 +28,16 @@
     <!-- Navigation Section -->
     <div class="navigation">
         <h2>Navigation</h2>
-        <p>Placeholder for navigation links</p>
+        <div class="button-container">
+            <!-- Button for Adding Activity -->
+            <a href="{{ url_for('add_activity.add_activity_page') }}">
+                <button class="action-button">Add Activity</button>
+            </a>
+            <!-- Button for Searching Activities -->
+            <a href="{{ url_for('search_activity.search_activity_page') }}">
+                <button class="action-button">Search Activities</button>
+            </a>
+        </div>
     </div>
 
     <!-- Messages Section -->
