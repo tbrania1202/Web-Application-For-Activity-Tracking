@@ -7,6 +7,7 @@
     <table>
         <thead>
             <tr>
+                <th>User Name</th>
                 <th>Activity Name</th>
                 <th>Type</th>
                 <th>Date</th>
@@ -19,6 +20,7 @@
         <tbody>
             {% for activity in activities %}
                 <tr>
+                    <td>{{ activity.user_id }}</td>
                     <td>{{ activity.name }}</td>
                     <td>{{ activity.type }}</td>
                     <td>{{ activity.date }}</td>

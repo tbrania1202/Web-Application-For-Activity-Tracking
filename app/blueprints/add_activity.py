@@ -7,6 +7,7 @@ add_activity_bp = Blueprint('add_activity', __name__)
 @add_activity_bp.route("/add_activity", methods=["GET", "POST"])
 def add_activity_page():
     if request.method == "POST":
+        user = request.form.get("user_name")
         name = request.form.get("activity_name")
         activity_type = request.form.get("activity_type")
         date = request.form.get("activity_date")
@@ -19,7 +20,7 @@ def add_activity_page():
         date = date.strftime("%d-%m-%Y")
 
         new_activity = {
-            "user_id": "admin",
+            "user_id": user,
             "name": name,
             "type": activity_type,
             "date": date,
