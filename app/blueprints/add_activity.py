@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from datetime import datetime
 from database import activity_collection
+from data.defined_data import ACTIVITY_TYPES, ACTIVITY_NAMES, ACTIVITY_METRIC
 
 add_activity_bp = Blueprint('add_activity', __name__)
 
@@ -18,6 +19,10 @@ def add_activity_page():
 
         date = datetime.strptime(date, "%Y-%m-%d")
         date = date.strftime("%d-%m-%Y")
+        try:
+            metric = float(metric)
+        except:
+            metric = int(metric)
 
         new_activity = {
             "user_id": user,
@@ -25,7 +30,7 @@ def add_activity_page():
             "type": activity_type,
             "date": date,
             "duration": int(duration),
-            "metric": int(metric),
+            "metric": metric,
             "intensity": intensity,
             "notes": notes,
         }
@@ -37,4 +42,4 @@ def add_activity_page():
 
         return redirect(url_for('home.home_page'))
 
-    return render_template("add_activity.html")
+    return render_template("add_activity.html", activity_types=ACTIVITY_TYPES, activity_names=ACTIVITY_NAMES, activity_metric=ACTIVITY_METRIC)
