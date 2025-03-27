@@ -13,16 +13,17 @@ def add_activity_page():
         activity_type = request.form.get("activity_type")
         date = request.form.get("activity_date")
         duration = request.form.get("activity_duration")
-        metric = request.form.get("activity_metric")
+        metric_value = request.form.get("activity_metric")
         intensity = request.form.get("activity_intensity")
         notes = request.form.get("activity_notes")
 
         date = datetime.strptime(date, "%Y-%m-%d")
         date = date.strftime("%d-%m-%Y")
         try:
-            metric = float(metric)
+            metric_value = float(metric_value)
         except:
-            metric = int(metric)
+            metric_value = int(metric_value)
+        metric_name = ACTIVITY_METRIC.get(name, "Unknown Metric")
 
         new_activity = {
             "user_id": user,
@@ -30,7 +31,8 @@ def add_activity_page():
             "type": activity_type,
             "date": date,
             "duration": int(duration),
-            "metric": metric,
+            "metric_name": metric_name,
+            "metric_value": metric_value,
             "intensity": intensity,
             "notes": notes,
         }

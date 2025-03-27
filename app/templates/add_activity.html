@@ -16,7 +16,7 @@
             <!-- Activity Name -->
             <div class="form-group">
                 <label for="activity_name">Activity Name</label>
-                <select id="activity_name" name="activity_name" required>
+                <select id="activity_name" name="activity_name" required onchange="toggleFormVisibility()">
                     <option value="" hidden></option>
                     {% for activity in activity_names %}
                         <option value="{{activity}}">{{ activity }}</option>
@@ -24,56 +24,111 @@
                 </select>
             </div>
 
-            <!-- Activity Type -->
-            <div class="form-group">
-                <label for="activity_type">Activity Type</label>
-                <select id="activity_type" name="activity_type" required>
-                    <option value="" hidden></option>
-                    {% for activity in activity_types %}
-                        <option value="{{activity}}">{{ activity }}</option>
-                    {% endfor %}
-                </select>
+            <div id="activity_form" style="display: none;">
+                <!-- Activity Type -->
+                <div class="form-group">
+                    <label for="activity_type">Activity Type</label>
+                    <select id="activity_type" name="activity_type" required>
+                        <option value="" hidden></option>
+                        {% for activity in activity_types %}
+                            <option value="{{activity}}">{{ activity }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Activity Date -->
+                <div class="form-group">
+                    <label for="activity_date">Activity Date</label>
+                    <input type="date" id="activity_date" name="activity_date" required>
+                </div>
+
+                <!-- Activity Duration -->
+                <div class="form-group">
+                    <label for="activity_duration">Duration (in minutes)</label>
+                    <input type="number" id="activity_duration" name="activity_duration" min=0 required>
+                </div>
+
+                <!-- Activity Metric -->
+                <div class="form-group">
+                    <label for="activity_metric">Metric</label>
+                    <input type="number" id="activity_metric" name="activity_metric" min=0 required>
+                </div>
+
+                <!-- Activity Intensity -->
+                <div class="form-group">
+                    <label for="activity_intensity">Intensity</label>
+                    <select id="activity_intensity" name="activity_intensity" required>
+                        <option value="" hidden></option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+
+
+                <!-- Activity Notes -->
+                <div class="form-group">
+                    <label for="activity_notes">Notes</label>
+                    <textarea id="activity_notes" name="activity_notes" rows="3" maxlength="150"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="add-activity-submit-button">Add Activity</button>
             </div>
-
-            <!-- Activity Date -->
-            <div class="form-group">
-                <label for="activity_date">Activity Date</label>
-                <input type="date" id="activity_date" name="activity_date" required>
-            </div>
-
-            <!-- Activity Duration -->
-            <div class="form-group">
-                <label for="activity_duration">Duration (in minutes)</label>
-                <input type="number" id="activity_duration" name="activity_duration" min=0 required>
-            </div>
-
-            <!-- Activity Metric -->
-            <div class="form-group">
-                <label for="activity_metric">Metric (e.g., distance or weight)</label>
-                <input type="number" id="activity_metric" name="activity_metric" required>
-            </div>
-
-            <!-- Activity Intensity -->
-            <div class="form-group">
-                <label for="activity_intensity">Intensity</label>
-                <select id="activity_intensity" name="activity_intensity" required>
-                    <option value="" hidden></option>
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
-                </select>
-            </div>
-
-
-            <!-- Activity Notes -->
-            <div class="form-group">
-                <label for="activity_notes">Notes</label>
-                <textarea id="activity_notes" name="activity_notes" rows="3" maxlength="150"></textarea>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="add-activity-submit-button">Add Activity</button> 
         </form>
     </div>
+
+    <script>
+        const activityMetric = {
+            'Gym': 'Weight lifted (kg)',
+            'Cycling': 'Distance (km)',
+            'Running': 'Distance (km)',
+            'Swimming': 'Distance (meters)',
+            'Walking': 'Distance (km)',
+            'Yoga': 'Number of figures',
+            'Dance': 'Number of songs',
+            'Boxing': 'Rounds',
+            'Hiking': 'Distance (km)',
+            'Rowing': 'Distance (meters)',
+            'CrossFit': 'Repetitions',
+            'Resistance Training': 'Weight lifted (kg)',
+            'Climbing': 'Height (meters)',
+            'Martial Arts': 'Rounds',
+            'Zumba': 'Number of songs', 
+            'Kayaking': 'Distance (km)',
+            'Rock Climbing': 'Height (meters)',
+            'Tai Chi': 'Number of figures',
+            'Surfing': 'Number of passed waves',
+            'Trail Running': 'Distance (km)',
+            'Horseback Riding': 'Distance (km)',
+            'Badminton': 'Points scored in the game',
+            'Tennis': 'Number of won sets',
+            'Basketball': 'Points scored in the game',
+            'Football': 'Goals scored in the game',
+            'Volleyball': 'Points scored in the game',
+            'Weightlifting': 'Weight lifted (kg)',
+            'Table Tennis': 'Points scored in the game',
+            'Jumping Rope': 'Repetitions',
+            'Beach Volleyball': 'Points scored in the game',
+            'Gymnastics': 'Number of exercises',
+            'Parkour': 'Number of obstacles',
+        };
+
+        function toggleFormVisibility() {
+            const selectedActivity = document.getElementById("activity_name").value;
+            const formSection = document.getElementById("activity_form");
+            const activityMetricLabel = document.querySelector("label[for='activity_metric']");
+
+            if (selectedActivity && activityMetric[selectedActivity]) {
+                activityMetricLabel.textContent = activityMetric[selectedActivity];
+            }
+
+            if (selectedActivity) {
+                formSection.style.display = "block";
+            } else {
+                formSection.style.display = "none";
+            }
+        }
+    </script>
 
 {% endblock %}
