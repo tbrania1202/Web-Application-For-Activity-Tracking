@@ -219,6 +219,7 @@ table {
     width: 98%;
     border-collapse: collapse;
     margin: 0 auto;
+    margin-bottom: 100px;
 }
 
 th, td {
@@ -308,4 +309,45 @@ th {
         padding: 20px;
         margin: 20px;
     }
+}
+
+.edit-btn, .delete-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 2px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.delete-btn:hover {
+    background-color: #a71d2a;
+}
+
+.delete-form {
+    display: inline-block;
+}
+
+.readonly-input {
+    background-color: #f0f0f0; /* Light gray background */
+    border: 1px solid #ccc;    /* Lighter border color */
+    cursor: not-allowed;       /* Change cursor to show it's non-editable */
 }
