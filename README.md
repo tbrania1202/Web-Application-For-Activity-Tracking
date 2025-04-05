@@ -43,6 +43,8 @@ A modern, user-friendly web application for tracking, managing, and analyzing ph
 ### ➕ Add Activity
 <img src="assets/add_activity.png" alt="Form for adding an activity" width="700"/>
 
+<img src="assets/add_activity2.png" alt="Form for adding an activity2" width="700"/>
+
 ---
 
 ### ✏️ Edit Activity
