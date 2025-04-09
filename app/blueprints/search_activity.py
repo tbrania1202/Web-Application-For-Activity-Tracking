@@ -10,23 +10,24 @@ search_activity_bp = Blueprint('search_activity', __name__)
 @search_activity_bp.route("/search_activity", methods=["GET", "POST"])
 def search_activity_page():
     query = {}
+    activities = list(activity_collection.find(query))
 
     if request.method == "POST":
         user = request.form.get("user_name")
-        # name = request.form.getlist("activity_name")
-        # activity_type = request.form.getlist("activity_type")
-        # intensity = request.form.getlist("activity_intensity")
+        name = request.form.getlist("activity_name")
+        activity_type = request.form.getlist("activity_type")
+        intensity = request.form.getlist("activity_intensity")
         date_from = request.form.get("date_from")
         date_to = request.form.get("date_to")
 
         if user:
             query["user_id"] = user
-        # if name:
-        #     query["name"] = {"$in": name}
-        # if activity_type:
-        #     query["type"] = {"$in": activity_type}
-        # if intensity:
-        #     query["intensity"] = intensity
+        if name:
+            query["name"] = {"$in": name}
+        if activity_type:
+            query["type"] = {"$in": activity_type}
+        if intensity:
+            query["intensity"] = {"$in": intensity}
         if date_from and date_to:
             try:
                 date_from = datetime.strptime(date_from, "%Y-%m-%d").strftime("%Y-%m-%d")
@@ -35,8 +36,18 @@ def search_activity_page():
             except:
                 print("Invalid date format provided.")
 
+        sort_by = request.form.get("sort_by")
+        sort_order = request.form.get("sort_order")
 
-    activities = list(activity_collection.find(query))
+        if sort_by and sort_order:
+            if sort_order == "desc":
+                sort_order = -1
+            else:
+                sort_order = 1
+            activities = list(activity_collection.find(query).sort(sort_by, sort_order))
+        else:
+            activities = list(activity_collection.find(query))
+    
     return render_template("search_activity.html", activities=activities,
                            activity_names=ACTIVITY_NAMES, activity_types=ACTIVITY_TYPES)
 

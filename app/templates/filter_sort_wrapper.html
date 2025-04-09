@@ -8,35 +8,44 @@
             <input type="text" id="user_name" name="user_name" value="{{ request.form.get('user_name', '') }}">
         </div>
 
-        <!-- <div class="form-group-wrapper">
-            <label for="activity_name">Activity Name</label>
-            <select id="activity_name" name="activity_name">
-                <option value="">-- All --</option>
+        <div class="form-group-wrapper">
+            <label>Activity name</label>
+            <select id="activity_name" name="activity_name" multiple="multiple">
                 {% for activity_name in activity_names %}
-                    <option value="{{ activity_name }}" {% if request.form.get('activity_name') == act %}selected{% endif %}>{{ activity_name }}</option>
+                    <option value="{{ activity_name }}"
+                            {% if activity_name in request.form.getlist('activity_name') %}selected{% endif %}>
+                            {{ activity_name }}
+                    </option>
                 {% endfor %}
             </select>
         </div>
 
         <div class="form-group-wrapper">
-            <label for="activity_type">Activity Type</label>
-            <select id="activity_type" name="activity_type">
-                <option value="">-- All --</option>
+            <label>Activity type</label>
+            <select id="activity_type" name="activity_type" multiple="multiple" style="width: 20%;">
+                <label>Activity type</label>
                 {% for activity_type in activity_types %}
-                    <option value="{{ activity_type }}" {% if request.form.get('activity_type') == typ %}selected{% endif %}>{{ activity_type }}</option>
+                    <option value="{{ activity_type }}"
+                            {% if activity_type in request.form.getlist('activity_type') %}selected{% endif %}>
+                            {{ activity_type }}
+                    </option>
                 {% endfor %}
             </select>
         </div>
 
         <div class="form-group-wrapper">
-            <label for="activity_intensity">Intensity</label>
-            <select id="activity_intensity" name="activity_intensity">
-                <option value="">-- All --</option>
-                <option value="Low" {% if request.form.get('activity_intensity') == 'Low' %}selected{% endif %}>Low</option>
-                <option value="Medium" {% if request.form.get('activity_intensity') == 'Medium' %}selected{% endif %}>Medium</option>
-                <option value="High" {% if request.form.get('activity_intensity') == 'High' %}selected{% endif %}>High</option>
-            </select>
-        </div> -->
+            <label>Intensity</label>
+            <div>
+                <label><input type="checkbox" name="activity_intensity" value="Low"
+                    {% if 'Low' in request.form.getlist('activity_intensity') %}checked{% endif %}> Low</label><br>
+        
+                <label><input type="checkbox" name="activity_intensity" value="Medium"
+                    {% if 'Medium' in request.form.getlist('activity_intensity') %}checked{% endif %}> Medium</label><br>
+        
+                <label><input type="checkbox" name="activity_intensity" value="High"
+                    {% if 'High' in request.form.getlist('activity_intensity') %}checked{% endif %}> High</label>
+            </div>
+        </div>
 
         <div class="form-group-wrapper">
             <label>Date From</label>
@@ -48,30 +57,69 @@
             <input type="date" name="date_to" value="{{ request.form.get('date_to', '') }}">
         </div>
 
-        <!-- <div class="form-group-wrapper">
+        <div class="form-group-wrapper">
             <label for="sort_by">Sort By</label>
-            <select id="sort_by" name="sort_by">
-                <option value="">-- None --</option>
-                <option value="date">Date</option>
-                <option value="duration">Duration</option>
-                <option value="metric_value">Metric Value</option>
-                <option value="name">Activity Name</option>
-                <option value="intensity">Intensity</option>
-                <option value="user_name">User ID</option>
+            <select id="sort_by" name="sort_by" style="width: 20%;">
+                <option value=""></option>
+                <option value="user_id" {% if request.form.get('sort_by') == 'user_id' %}selected{% endif %}>User</option>
+                <option value="name" {% if request.form.get('sort_by') == 'name' %}selected{% endif %}>Activity Name</option>
+                <option value="type" {% if request.form.get('sort_by') == 'type' %}selected{% endif %}>Activity Type</option>
+                <option value="date" {% if request.form.get('sort_by') == 'date' %}selected{% endif %}>Date</option>
+                <option value="duration" {% if request.form.get('sort_by') == 'duration' %}selected{% endif %}>Duration</option>
+                <option value="metric_value" {% if request.form.get('sort_by') == 'metric_value' %}selected{% endif %}>Metric Value</option>
+                <option value="intensity" {% if request.form.get('sort_by') == 'intensity' %}selected{% endif %}>Intensity</option>
             </select>
         </div>
-
+        
         <div class="form-group-wrapper">
             <label for="sort_order">Order</label>
-            <select id="sort_order" name="sort_order">
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
+            <select id="sort_order" name="sort_order" style="width: 20%;">
+                <option value=""></option>
+                <option value="asc" {% if request.form.get('sort_order') == 'asc' %}selected{% endif %}>Ascending</option>
+                <option value="desc" {% if request.form.get('sort_order') == 'desc' %}selected{% endif %}>Descending</option>
             </select>
-        </div> -->
+        </div>
 
         <button type="submit-wrapper" class="add-activity-submit-button-wrapper">Apply</button>
     </form>
 
-    {% block filter_sort_wrapper_content %}{% endblock %}
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#activity_name').select2({
+            placeholder: "Select activity names",
+            allowClear: true,
+            closeOnSelect: false
+        });
+    });
+    
+    $(document).ready(function () {
+        $('#activity_type').select2({
+            placeholder: "Select activity types",
+            allowClear: true,
+            closeOnSelect: false
+        });
+    });
+
+    $(document).ready(function () {
+        $('#sort_by').select2({
+            placeholder: "Sort by",
+            allowClear: true,
+            minimumResultsForSearch: Infinity
+        });
+    });
+
+    $(document).ready(function () {
+        $('#sort_order').select2({
+            placeholder: "Sort order",
+            allowClear: true,
+            minimumResultsForSearch: Infinity
+        });
+    });
+</script>
+
+{% block filter_sort_wrapper_content %}{% endblock %}
+
 {% endblock %}
