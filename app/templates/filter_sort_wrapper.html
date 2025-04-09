@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container-wrapper">
+    <form method="POST" action="{{ url_for('search_activity.search_activity_page') }}">
+        <div class="form-group-wrapper">
+            <label for="user_name">User ID</label>
+            <input type="text" id="user_name" name="user_name" value="{{ request.form.get('user_name', '') }}">
+        </div>
+
+        <!-- <div class="form-group-wrapper">
+            <label for="activity_name">Activity Name</label>
+            <select id="activity_name" name="activity_name">
+                <option value="">-- All --</option>
+                {% for activity_name in activity_names %}
+                    <option value="{{ activity_name }}" {% if request.form.get('activity_name') == act %}selected{% endif %}>{{ activity_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group-wrapper">
+            <label for="activity_type">Activity Type</label>
+            <select id="activity_type" name="activity_type">
+                <option value="">-- All --</option>
+                {% for activity_type in activity_types %}
+                    <option value="{{ activity_type }}" {% if request.form.get('activity_type') == typ %}selected{% endif %}>{{ activity_type }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group-wrapper">
+            <label for="activity_intensity">Intensity</label>
+            <select id="activity_intensity" name="activity_intensity">
+                <option value="">-- All --</option>
+                <option value="Low" {% if request.form.get('activity_intensity') == 'Low' %}selected{% endif %}>Low</option>
+                <option value="Medium" {% if request.form.get('activity_intensity') == 'Medium' %}selected{% endif %}>Medium</option>
+                <option value="High" {% if request.form.get('activity_intensity') == 'High' %}selected{% endif %}>High</option>
+            </select>
+        </div> -->
+
+        <div class="form-group-wrapper">
+            <label>Date From</label>
+            <input type="date" name="date_from" value="{{ request.form.get('date_from', '') }}">
+        </div>
+
+        <div class="form-group-wrapper">
+            <label>Date To</label>
+            <input type="date" name="date_to" value="{{ request.form.get('date_to', '') }}">
+        </div>
+
+        <!-- <div class="form-group-wrapper">
+            <label for="sort_by">Sort By</label>
+            <select id="sort_by" name="sort_by">
+                <option value="">-- None --</option>
+                <option value="date">Date</option>
+                <option value="duration">Duration</option>
+                <option value="metric_value">Metric Value</option>
+                <option value="name">Activity Name</option>
+                <option value="intensity">Intensity</option>
+                <option value="user_name">User ID</option>
+            </select>
+        </div>
+
+        <div class="form-group-wrapper">
+            <label for="sort_order">Order</label>
+            <select id="sort_order" name="sort_order">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+        </div> -->
+
+        <button type="submit-wrapper" class="add-activity-submit-button-wrapper">Apply</button>
+    </form>
+
+    {% block filter_sort_wrapper_content %}{% endblock %}
+</div>
+{% endblock %}

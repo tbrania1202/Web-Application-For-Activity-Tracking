@@ -2,15 +2,43 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from database import activity_collection
 from bson.objectid import ObjectId
 from datetime import datetime
-from data.defined_data import ACTIVITY_TYPES
+from data.defined_data import ACTIVITY_NAMES, ACTIVITY_TYPES
 
 search_activity_bp = Blueprint('search_activity', __name__)
 
 
 @search_activity_bp.route("/search_activity", methods=["GET", "POST"])
-def search_activity_page():   
-    activities = list(activity_collection.find())
-    return render_template("search_activity.html", activities=activities)
+def search_activity_page():
+    query = {}
+
+    if request.method == "POST":
+        user = request.form.get("user_name")
+        # name = request.form.getlist("activity_name")
+        # activity_type = request.form.getlist("activity_type")
+        # intensity = request.form.getlist("activity_intensity")
+        date_from = request.form.get("date_from")
+        date_to = request.form.get("date_to")
+
+        if user:
+            query["user_id"] = user
+        # if name:
+        #     query["name"] = {"$in": name}
+        # if activity_type:
+        #     query["type"] = {"$in": activity_type}
+        # if intensity:
+        #     query["intensity"] = intensity
+        if date_from and date_to:
+            try:
+                date_from = datetime.strptime(date_from, "%Y-%m-%d").strftime("%Y-%m-%d")
+                date_to = datetime.strptime(date_to, "%Y-%m-%d").strftime("%Y-%m-%d")
+                query["date"] = {"$gte": date_from, "$lte": date_to}
+            except:
+                print("Invalid date format provided.")
+
+
+    activities = list(activity_collection.find(query))
+    return render_template("search_activity.html", activities=activities,
+                           activity_names=ACTIVITY_NAMES, activity_types=ACTIVITY_TYPES)
 
 
 @search_activity_bp.route("/edit_activity/<activity_id>", methods=["GET", "POST"])
@@ -25,8 +53,7 @@ def edit_activity(activity_id):
         intensity = request.form.get("activity_intensity")
         notes = request.form.get("activity_notes")
 
-        date = datetime.strptime(date, "%Y-%m-%d")
-        date = date.strftime("%d-%m-%Y")
+        date = datetime.strptime(date, "%Y-%m-%d").strftime("%Y-%m-%d")
         try:
             metric_value = float(metric_value)
         except:

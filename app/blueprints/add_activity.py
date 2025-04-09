@@ -17,8 +17,7 @@ def add_activity_page():
         intensity = request.form.get("activity_intensity")
         notes = request.form.get("activity_notes")
 
-        date = datetime.strptime(date, "%Y-%m-%d")
-        date = date.strftime("%d-%m-%Y")
+        date = datetime.strptime(date, "%Y-%m-%d").strftime("%Y-%m-%d")
         try:
             metric_value = float(metric_value)
         except:

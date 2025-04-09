@@ -34,8 +34,8 @@
             <!-- Activity Date -->
             <div class="form-group">
                 <label for="activity_date">Activity Date</label>
-                <input type="date" id="activity_date" name="activity_date" 
-                    value="{{ activity.date[6:10] ~ '-' ~ activity.date[3:5] ~ '-' ~ activity.date[0:2] }}" required>
+                <input type="date" id="activity_date" name="activity_date"
+                    value="{{ activity.date[0:4] ~ '-' ~ activity.date[5:7] ~ '-' ~ activity.date[8:10] }}" required>
             </div>
 
             <!-- Activity Duration -->
