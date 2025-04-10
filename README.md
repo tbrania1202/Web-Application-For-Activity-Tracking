@@ -26,7 +26,7 @@ A modern, user-friendly web application for tracking, managing, and analyzing ph
 - Clean, responsive UI built with HTML, CSS, and JavaScript
 - MongoDB integration for persistent data storage
 - Dynamic form fields based on user selections
-- Sorting and filtering according to available parameters *(in progress)*
+- Sorting and filtering according to available parameters
 - Visual statistics *(in progress)*
 - Report generation *(in progress)*
 - Downloading reports as PDF or sending to email *(in progress)*
@@ -59,6 +59,11 @@ A modern, user-friendly web application for tracking, managing, and analyzing ph
 
 ### 🔍 Manage Activities
 <img src="assets/manage_activity.png" alt="Search and manage your activity list" width="700"/>
+
+---
+
+### 🧐 Filtering and Sorting Activities
+<img src="assets/filtering_sorting.png" alt="Filtering and sorting your activity list" width="700"/>
 
 ---
 
