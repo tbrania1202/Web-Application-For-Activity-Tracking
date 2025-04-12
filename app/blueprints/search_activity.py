@@ -3,6 +3,7 @@ from database import activity_collection
 from bson.objectid import ObjectId
 from datetime import datetime
 from data.defined_data import ACTIVITY_NAMES, ACTIVITY_TYPES
+from app.filter_sort_wrapper import filter_sort_activities
 
 search_activity_bp = Blueprint('search_activity', __name__)
 
@@ -13,43 +14,11 @@ def search_activity_page():
     activities = list(activity_collection.find(query))
 
     if request.method == "POST":
-        user = request.form.get("user_name")
-        name = request.form.getlist("activity_name")
-        activity_type = request.form.getlist("activity_type")
-        intensity = request.form.getlist("activity_intensity")
-        date_from = request.form.get("date_from")
-        date_to = request.form.get("date_to")
-
-        if user:
-            query["user_id"] = user
-        if name:
-            query["name"] = {"$in": name}
-        if activity_type:
-            query["type"] = {"$in": activity_type}
-        if intensity:
-            query["intensity"] = {"$in": intensity}
-        if date_from and date_to:
-            try:
-                date_from = datetime.strptime(date_from, "%Y-%m-%d").strftime("%Y-%m-%d")
-                date_to = datetime.strptime(date_to, "%Y-%m-%d").strftime("%Y-%m-%d")
-                query["date"] = {"$gte": date_from, "$lte": date_to}
-            except:
-                print("Invalid date format provided.")
-
-        sort_by = request.form.get("sort_by")
-        sort_order = request.form.get("sort_order")
-
-        if sort_by and sort_order:
-            if sort_order == "desc":
-                sort_order = -1
-            else:
-                sort_order = 1
-            activities = list(activity_collection.find(query).sort(sort_by, sort_order))
-        else:
-            activities = list(activity_collection.find(query))
-    
+        activities = filter_sort_activities()
+        
     return render_template("search_activity.html", activities=activities,
-                           activity_names=ACTIVITY_NAMES, activity_types=ACTIVITY_TYPES)
+                           activity_names=ACTIVITY_NAMES, activity_types=ACTIVITY_TYPES,
+                           form_action=url_for('search_activity.search_activity_page'))
 
 
 @search_activity_bp.route("/edit_activity/<activity_id>", methods=["GET", "POST"])

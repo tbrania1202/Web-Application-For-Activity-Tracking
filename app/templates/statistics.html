@@ -4,6 +4,35 @@
 
 {% block filter_sort_wrapper_content %}
 
-STATISTICS
+    <table>
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Activity Name</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Duration (minutes)</th>
+                <th>Metric Name</th>
+                <th>Metric Value</th>
+                <th>Intensity</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for activity in activities %}
+                <tr>
+                    <td>{{ activity.user_id }}</td>
+                    <td>{{ activity.name }}</td>
+                    <td>{{ activity.type }}</td>
+                    <td>{{ activity.date }}</td>
+                    <td>{{ activity.duration }}</td>
+                    <td>{{ activity.metric_name }}</td>
+                    <td>{{ activity.metric_value }}</td>
+                    <td>{{ activity.intensity }}</td>
+                    <td>{{ activity.notes }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}
