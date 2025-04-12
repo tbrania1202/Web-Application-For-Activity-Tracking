@@ -426,8 +426,8 @@ th {
     color: #444;
 }
 
-input[type="text"],
-input[type="date"],
+.filter-sort-button-container input[type="text"],
+.filter-sort-button-container input[type="date"],
 select {
     width: 80%;
     padding: 0.55rem 0.75rem;
@@ -438,8 +438,8 @@ select {
     font-size: 0.95rem;
 }
 
-input[type="text"]:focus,
-input[type="date"]:focus,
+.filter-sort-button-container input[type="text"]:focus,
+.filter-sort-button-container input[type="date"]:focus,
 select:focus {
     border-color: #8b5cf6;
     outline: none;
